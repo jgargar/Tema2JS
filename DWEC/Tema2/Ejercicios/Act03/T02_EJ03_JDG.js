@@ -23,7 +23,6 @@
         return Math.floor(Math.random() * 101) + 100;
     }
 
-    // Función para crear checkboxes con números aleatorios
     function crearCheckboxes() {
         for (let i = 0; i < 100; i++) {
             let checkbox = document.createElement('input');
@@ -34,12 +33,11 @@
             label.htmlFor = 'checkbox' + i;
             label.appendChild(document.createTextNode(getRandomNumber()));
 
-            div.appendChild(checkbox);
-            div.appendChild(label);
+            divCheckbox.appendChild(checkbox);
+            divCheckbox.appendChild(label);
       }
     }
 
-    // Función para marcar todos los checkboxes
     function marcarTodos() {
         let listaCheckBox = document.querySelectorAll('input[type="checkbox"]');
         listaCheckBox.forEach(function(checkbox) {
@@ -47,7 +45,6 @@
         });
     }
 
-    // Función para desmarcar todos los checkboxes
     function desmarcarTodos() {
         let listaCheckBox = document.querySelectorAll('input[type="checkbox"]');
         listaCheckBox.forEach(function(checkbox) {
@@ -55,10 +52,29 @@
         });
     }
 
+    function cambiarTamanio() {
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          let numero = parseInt(checkbox.nextSibling.textContent);
+          if (numero % 2 === 0) {
+            checkbox.style.width = '30px';
+            checkbox.style.height = '30px';
+          }
+        });
+      }
+
+      function restaurarTamanio() {
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.style.width = '';
+          checkbox.style.height = '';
+        });
+      }
+
     btnMarcarTodos.addEventListener("click", marcarTodos())
     btnDesmarcarTodos.addEventListener("click", desmarcarTodos())
-    btnCambiarTamanio.addEventListener("click", aniadir)
-    btnRestaurarTamanio.addEventListener("click", aniadir)
+    btnCambiarTamanio.addEventListener("click", cambiarTamanio())
+    btnRestaurarTamanio.addEventListener("click", restaurarTamanio())
 
     crearCheckboxes();
 }
