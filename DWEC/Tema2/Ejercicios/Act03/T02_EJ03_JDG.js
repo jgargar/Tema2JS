@@ -17,64 +17,73 @@
     const btnDesmarcarTodos = document.querySelector("#btnDesmarcarTodos")
     const btnCambiarTamanio = document.querySelector("#btnCambiarTamanio")
     const btnRestaurarTamanio = document.querySelector("#btnRestaurarTamanio")
-    const divCheckbox = document.getElementById("#divCheckbox")
+    const divCheckbox = document.querySelector("#divCheckbox")
 
     function getRandomNumber() {
         return Math.floor(Math.random() * 101) + 100;
     }
 
     function crearCheckboxes() {
-        for (let i = 0; i < 100; i++) {
-            let checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = 'checkbox' + i;
+      for (let i = 0; i < 100; i++) {
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'checkbox' + i;
+        checkbox.value = getRandomNumber()
 
-            let label = document.createElement('label');
-            label.htmlFor = 'checkbox' + i;
-            label.appendChild(document.createTextNode(getRandomNumber()));
+        let label = document.createElement('label');
+        label.htmlFor = 'checkbox' + i;
+        label.appendChild(document.createTextNode(getRandomNumber()));
+          
+        checkbox.addEventListener("click", () => {
+          if(checkbox.checked===true){
+            console.log("Marcado " + checkbox.value);
+          }else{
+            console.log("Desmarcado " + checkbox.value);
+          }
+        })
 
-            divCheckbox.appendChild(checkbox);
-            divCheckbox.appendChild(label);
+        divCheckbox.appendChild(checkbox);
+        divCheckbox.appendChild(label);
       }
     }
 
     function marcarTodos() {
-        let listaCheckBox = document.querySelectorAll('input[type="checkbox"]');
-        listaCheckBox.forEach(function(checkbox) {
-            checkbox.checked = true;
-        });
+      let listaCheckBox = document.querySelectorAll('input[type="checkbox"]');
+      listaCheckBox.forEach(function(checkbox) {
+          checkbox.checked = true;
+      });
     }
 
     function desmarcarTodos() {
-        let listaCheckBox = document.querySelectorAll('input[type="checkbox"]');
-        listaCheckBox.forEach(function(checkbox) {
-            checkbox.checked = false;
-        });
+      let listaCheckBox = document.querySelectorAll('input[type="checkbox"]');
+      listaCheckBox.forEach(function(checkbox) {
+          checkbox.checked = false;
+      });
     }
 
     function cambiarTamanio() {
-        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(function(checkbox) {
-          let numero = parseInt(checkbox.nextSibling.textContent);
-          if (numero % 2 === 0) {
-            checkbox.style.width = '30px';
-            checkbox.style.height = '30px';
-          }
-        });
-      }
+      let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function(checkbox) {
+        let numero = parseInt(checkbox.nextSibling.textContent);
+        if (numero % 2 === 0) {
+          checkbox.style.width = '30px';
+          checkbox.style.height = '30px';
+        }
+      });
+    }
 
-      function restaurarTamanio() {
-        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(function(checkbox) {
-          checkbox.style.width = '';
-          checkbox.style.height = '';
-        });
-      }
+    function restaurarTamanio() {
+      let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function(checkbox) {
+        checkbox.style.width = '';
+        checkbox.style.height = '';
+      });
+    }
 
-    btnMarcarTodos.addEventListener("click", marcarTodos())
-    btnDesmarcarTodos.addEventListener("click", desmarcarTodos())
-    btnCambiarTamanio.addEventListener("click", cambiarTamanio())
-    btnRestaurarTamanio.addEventListener("click", restaurarTamanio())
+    btnMarcarTodos.addEventListener("click", marcarTodos)
+    btnDesmarcarTodos.addEventListener("click", desmarcarTodos)
+    btnCambiarTamanio.addEventListener("click", cambiarTamanio)
+    btnRestaurarTamanio.addEventListener("click", restaurarTamanio)
 
     crearCheckboxes();
 }
