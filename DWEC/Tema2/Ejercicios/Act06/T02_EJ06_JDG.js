@@ -4,6 +4,8 @@
      * Realiza un programa con dos botones “Comenzar Saludos” y “Parar Saludos”. Al hacer 
      * click en “Comenzar Saludos”, lance un setInterval que cada 5 segundos muestra un 
      * “alert” con “Hola”. El botón “Parar Saludos” parará esa secuencia. 
+     * 
+     * Fuente: https://developer.mozilla.org/en-US/docs/Web/API/setInterval
      */
 
     let btnIniciarSaludo = document.createElement("button")
@@ -11,17 +13,23 @@
 
     let btnPararSaludo = document.createElement("button")
     btnPararSaludo.textContent = "Parar Saludo"
-    const intervalId = 0;
+    
+    let intervalId;
+
+    document.body.append(btnIniciarSaludo, btnPararSaludo)
 
     btnIniciarSaludo.addEventListener("click", () => {
-        intervalId = setInterval(() => {
-            alert("Hola") }, 
-            5000);
+        if (!intervalId){
+            intervalId = setInterval(() => {
+                alert("Hola")
+            }, 5000)
+        }
     })
 
     btnPararSaludo.addEventListener("click", () => {
-        clearInterval(intervalId);
+        clearInterval(intervalId)
+        intervalId = null
     })
 
-    document.body.append(btnIniciarSaludo, btnPararSaludo)
+    
 }
