@@ -5,18 +5,13 @@
      * fondo a un color aleatorio. 
      */
 
-    function generarNuevoColor(){
-        let simbolos = "0123456789ABCDEF";
-        let color = "#";
-    
-        for(var i = 0; i < 6; i++){
-            color = color + simbolos[Math.floor(Math.random() * 16)];
-        }
-        return color
+    function getRandomColor() {
+        return [Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255)];
     }
 
     window.addEventListener("dblclick", () => {
-        document.body.style.background = generarNuevoColor();
+        let color = getRandomColor()
+        document.body.style.background = `rgb(${color[0]}, ${color[1]}, ${color[2]})`
     })
 
     

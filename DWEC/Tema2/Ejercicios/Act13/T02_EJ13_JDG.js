@@ -38,4 +38,5 @@
 
     document.body.append(select)
 
+    let valor = arraySelect1
 }

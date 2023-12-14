@@ -23,10 +23,18 @@
     })
 
     function validaAnagrama(texto1, texto2){
+        let cont = 0
+        let valid = 0
         let arrayTexto1 = texto1.toLowerCase().replaceAll(" ","").split("").sort()
         let arrayTexto2 = texto2.toLowerCase().replaceAll(" ","").split("").sort()
+        arrayTexto1.forEach(element => {
+            if (element === arrayTexto2[cont]){
+                valid++
+            }
+            cont++;
+        });
         //https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/every
-        return arrayTexto1.length === arrayTexto2.length && arrayTexto1.every((element, index) => element === arrayTexto2[index])
+        return arrayTexto1.length === arrayTexto2.length && valid === arrayTexto1.length
         
     }
 }
